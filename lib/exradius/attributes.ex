@@ -7,8 +7,11 @@ defmodule Exradius.Attributes do
   end
 
   defp generate(stream, file) do
-    name = String.split(file, ".") |> Enum.map( &String.capitalize/1 ) |> Enum.join(".")
-    modulename = "Elixir.Exradius." <> name |> binary_to_atom
+    name = file |> String.replace("dictionary", "attr")
+                |> String.split(".")
+                |> Enum.map( &String.capitalize/1 )
+                |> Enum.join(".")
+    modulename = "Elixir." <> name |> binary_to_atom
     {vendor, macros} = Enum.reduce(stream, {nil, []}, &gen_macro/2)
     quote do
       defmodule unquote(modulename) do
@@ -26,25 +29,29 @@ defmodule Exradius.Attributes do
         name = vendor_strip(name, vendor) |> String.downcase |> String.replace("-", "_") |> binary_to_atom
         id = build_id(vendor, id |> parse_int)
         macro = quote do
-          defmacro unquote({name, [context: __ENV__.context], Elixir}), do: unquote(id)
+          defmacro unquote(name)(), do: unquote(id)
+          defmacro unquote(name)(attr), do: {unquote(id), attr}
         end
         {vendor, [macro|macros]}
       ["VENDOR", name, id | _] ->
-        {{parse_int(id), name}, macros}
+        {{parse_int(id), prefix(name)}, macros}
       _ ->
         {vendor, macros}
     end
   end
 
   def vendor_strip(name, nil), do: name
-  def vendor_strip(name, {_, vendor_name}) do
+  def vendor_strip(name, {_, vendor_name}), do: strip_from(name, List.wrap(vendor_name))
+
+  def strip_from(name, []), do: name
+  def strip_from(name, [vendor_name | rest]) do
     vendor_name = vendor_name <> "-"
     vsize = size(vendor_name)
     prefix = String.slice(name, 0, vsize)
     if prefix == vendor_name do
       String.slice(name, vsize, size(name) - vsize)
     else
-      name
+      strip_from(name, rest)
     end
   end
 
@@ -53,5 +60,26 @@ defmodule Exradius.Attributes do
 
   def build_id(nil, id), do: id
   def build_id({vendor, _}, id), do: {vendor, id}
+
+  lc {vendor, prefix} inlist
+    [
+     {"Alcatel", "ATT"},
+     {"Alcatel-Lucent-Service-Router", ["Timetra", "Alc"]},
+     {"Aptis", "CVX"},
+     {"Bay-Networks", "Annex"},
+     {"Cisco-BBSM", "CBBSM"},
+     {"Cisco-VPN3000", "VPN3000"},
+     {"Cisco-VPN5000", "VPN5000"},
+     {"FreeRADIUS", "Freeradius"},
+     {"Livingston", "LE"},
+     {"Microsoft", "MS"},
+     {"Netscreen", "NS"},
+     {"SpringTide", "ST"},
+     {"Starent", ["SN", "SNA"]},
+     {"Travelping", "TP"}
+    ] do
+    def prefix(unquote(vendor)), do: unquote(prefix)
+  end
+  def prefix(vendor), do: vendor
 
 end
