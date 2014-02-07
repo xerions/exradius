@@ -4,7 +4,6 @@ defmodule Exradius.Mixfile do
   def project do
     [ app: :exradius,
       version: "0.0.1",
-      elixir: "~> 0.12.2",
       deps: deps ]
   end
 
