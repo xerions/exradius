@@ -61,7 +61,7 @@ defmodule Exradius.Attributes do
   def build_id(nil, id), do: id
   def build_id({vendor, _}, id), do: {vendor, id}
 
-  lc {vendor, prefix} inlist
+  for {vendor, prefix} <-
     [
      {"Alcatel", "ATT"},
      {"Alcatel-Lucent-Service-Router", ["Timetra", "Alc"]},
