@@ -11,7 +11,7 @@ defmodule Exradius.Attributes do
                 |> String.split(".")
                 |> Enum.map( &String.capitalize/1 )
                 |> Enum.join(".")
-    modulename = "Elixir." <> name |> binary_to_atom
+    modulename = "Elixir." <> name |> String.to_atom
     {vendor, macros} = Enum.reduce(stream, {nil, []}, &gen_macro/2)
     quote do
       defmodule unquote(modulename) do
@@ -26,7 +26,7 @@ defmodule Exradius.Attributes do
     line = String.split(line, [" ", "\n", "\t"]) |> Enum.filter(&(&1 != ""))
     case line do
       ["ATTRIBUTE", name, id | _] ->
-        name = vendor_strip(name, vendor) |> String.downcase |> String.replace("-", "_") |> binary_to_atom
+        name = vendor_strip(name, vendor) |> String.downcase |> String.replace("-", "_") |> String.to_atom
         id = build_id(vendor, id |> parse_int)
         macro = quote do
           defmacro unquote(name)(), do: unquote(id)
@@ -46,17 +46,17 @@ defmodule Exradius.Attributes do
   def strip_from(name, []), do: name
   def strip_from(name, [vendor_name | rest]) do
     vendor_name = vendor_name <> "-"
-    vsize = size(vendor_name)
+    vsize = byte_size(vendor_name)
     prefix = String.slice(name, 0, vsize)
     if prefix == vendor_name do
-      String.slice(name, vsize, size(name) - vsize)
+      String.slice(name, vsize, byte_size(name) - vsize)
     else
       strip_from(name, rest)
     end
   end
 
-  def parse_int("0x" <> int), do: binary_to_integer(int, 16)
-  def parse_int(int), do: binary_to_integer(int)
+  def parse_int("0x" <> int), do: String.to_integer(int, 16)
+  def parse_int(int), do: String.to_integer(int)
 
   def build_id(nil, id), do: id
   def build_id({vendor, _}, id), do: {vendor, id}
