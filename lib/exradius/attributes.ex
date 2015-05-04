@@ -1,7 +1,7 @@
 defmodule Exradius.Attributes do
 
   def mk_dict(path, file) do
-    IO.puts("compile #{file}")
+    IO.puts("Compiled #{file}")
     Code.eval_quoted(file, [], __ENV__)
     Path.join(path, file) |> File.stream! |> generate(file)
   end
