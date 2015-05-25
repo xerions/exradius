@@ -4,7 +4,7 @@ defmodule Exradius.Mixfile do
   def project do
     [ app: :exradius,
       version: "0.0.1",
-      deps: deps ]
+      deps: deps(Mix.env) ]
   end
 
   # Configuration for the OTP application
@@ -17,8 +17,11 @@ defmodule Exradius.Mixfile do
   #
   # To specify particular versions, regardless of the tag, do:
   # { :barbat, "~> 0.1", github: "elixir-lang/barbat" }
-  defp deps do
-    [{ :eradius, github: "travelping/eradius" },
-     { :meck,    github: "eproxus/meck", branch: "master", optional: true }]
+
+  defp deps(:mock) do
+    [{ :meck,    github: "eproxus/meck", optional: true }]
+  end
+  defp deps(_) do
+    [{ :eradius, github: "travelping/eradius" }]
   end
 end
