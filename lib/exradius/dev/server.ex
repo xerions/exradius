@@ -6,7 +6,7 @@ if Code.ensure_loaded?(:meck) do
     For request id it goes from 0 to 255, and after it get to next ports. Port range is from
     20000 till 30000.
     """
-    def __struct__, do: %{ip: nil, port: 20000, reqid: 0, clients: %{}}
+    defstruct ip: nil, port: 20000, reqid: 0, clients: %{}
 
     def start_link(name, ip) do
       {:ok, pid} = Agent.start_link(fn -> %__MODULE__{ip: ip} end)
