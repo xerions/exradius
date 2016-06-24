@@ -18,10 +18,9 @@ defmodule Exradius.Mixfile do
   # To specify particular versions, regardless of the tag, do:
   # { :barbat, "~> 0.1", github: "elixir-lang/barbat" }
 
-  defp deps(:mock) do
-    [{ :meck,    github: "eproxus/meck", optional: true }]
-  end
   defp deps(_) do
-    [{ :eradius, github: "travelping/eradius" }]
+    [{:eradius, github: "travelping/eradius" },
+     {:edown,   github: "uwiger/edown", override: true },
+     {:meck,    github: "eproxus/meck", override: true }]
   end
 end
