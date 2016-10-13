@@ -1,6 +1,6 @@
 if Mix.env == :dev do
   defmodule Sample do
-    @doc """
+    @moduledoc """
     Example of using eradius, will be updated, as it will be have better elixir interface.
     """
     import Exradius.Data

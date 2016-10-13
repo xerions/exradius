@@ -20,11 +20,9 @@ if Code.ensure_loaded?(:meck) do
     def reqid(name) do
       Agent.get_and_update(name,
         fn(state = %{reqid: reqid, port: port, ip: ip}) ->
-          if reqid >= 255 do
-            reqid = 0
-            port = port + 1
-          end
-          if port > 30000, do: port = 20000
+          {reqid, port} = if reqid >= 255, do: {0, port + 1},
+                                           else: {reqid, port}
+          port = if port > 30000, do: 20000, else: port
           {{ip, port, reqid + 1}, %{state | reqid: reqid + 1, port: port}}
         end)
     end
