@@ -42,7 +42,7 @@ if Code.ensure_loaded?(:meck) do
       {:error, :timeout}
     end
     defp request_send(to, from, secret, port, req, n) do
-      send to, {:udp, self, from, port, req}
+      send to, {:udp, self(), from, port, req}
       receive do
         {:udp, req} -> :eradius_lib.decode_request(req, secret)
       after
