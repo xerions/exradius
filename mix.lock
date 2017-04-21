@@ -1,0 +1,12 @@
+%{"bear": {:git, "git://github.com/boundary/bear.git", "119234548783af19b8ec75c879c5062676b92571", [tag: "0.8.2"]},
+  "coveralls": {:git, "git://github.com/markusn/coveralls-erl.git", "aaa244427e0e327ee2736d0616289d0578fa8929", [branch: "master"]},
+  "edown": {:git, "https://github.com/uwiger/edown.git", "754be25f71a04099c83f3ffdff268e70beeb0021", []},
+  "eradius": {:git, "https://github.com/travelping/eradius.git", "513572f19607e7d712da8f4b1ab7c7d118286170", []},
+  "exometer_core": {:git, "git://github.com/Feuerlabs/exometer_core", "9206b28d045b395abd1b86cc794223ec9aeeb0ea", [branch: "master"]},
+  "folsom": {:git, "git://github.com/folsom-project/folsom", "38e2cce7c64ce1f0a3a918d90394cfc0a940b1ba", [ref: "38e2cce"]},
+  "goldrush": {:git, "git://github.com/DeadZen/goldrush.git", "212299233c7e7eb63a97be2777e1c05ebaa58dbe", [tag: "0.1.8"]},
+  "hut": {:git, "git://github.com/tolbrino/hut.git", "025540398478ab6f95932c3234382ac5bb21ad3e", [ref: "v1.1.1"]},
+  "lager": {:git, "git://github.com/basho/lager", "bce5504a955e52be8d5cf4b3c6b1fcd898ab5756", [tag: "3.2.2"]},
+  "meck": {:git, "https://github.com/eproxus/meck.git", "c772db17a7c94e75d20688197f61538d63fe2ae9", []},
+  "parse_trans": {:git, "git://github.com/uwiger/parse_trans.git", "a210adafdfbb904d156d8f22abd5fb58fc17de1e", [tag: "2.9.2"]},
+  "setup": {:git, "git://github.com/uwiger/setup.git", "5c7d635145e5ffb8b0fa6b470770cdd1cb16b0b2", [tag: "1.6"]}}
