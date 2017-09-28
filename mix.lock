@@ -1,0 +1,10 @@
+%{"bear": {:hex, :bear, "0.8.5", "e95fca1627cd9e15baf93ce0a52aff16917baf325f0ee65b88cd715376cd2344", [], [], "hexpm"},
+  "eradius": {:hex, :eradius, "0.8.2", "18e3e7b9900b5e2fbefa857c5eea1fc0401a29df1c47d211d453513e56bc8f32", [], [{:exometer_core, "1.5.2", [hex: :exometer_core, repo: "hexpm", optional: false]}, {:lager, "3.5.1", [hex: :lager, repo: "hexpm", optional: false]}, {:meck, "0.8.8", [hex: :meck, repo: "hexpm", optional: false]}], "hexpm"},
+  "exometer_core": {:hex, :exometer_core, "1.5.2", "62a99a361ba8a14d53857d4c716a191e810299d2f43c5c981eb7b086c0bfcce1", [], [{:folsom, "~>0.8.5", [hex: :folsom, repo: "hexpm", optional: false]}, {:hut, "~>1.2.0", [hex: :hut, repo: "hexpm", optional: false]}, {:lager, "~>3.5.0", [hex: :lager, repo: "hexpm", optional: false]}, {:parse_trans, "~>3.0.0", [hex: :parse_trans, repo: "hexpm", optional: false]}, {:setup, "~>1.8.2", [hex: :setup, repo: "hexpm", optional: false]}], "hexpm"},
+  "folsom": {:hex, :folsom, "0.8.5", "94a027b56fe84feed264f9b33cb4c6ac9a801fad84b87dbda0836ce83c3b8d69", [], [{:bear, "0.8.5", [hex: :bear, repo: "hexpm", optional: false]}], "hexpm"},
+  "goldrush": {:hex, :goldrush, "0.1.9", "f06e5d5f1277da5c413e84d5a2924174182fb108dabb39d5ec548b27424cd106", [], [], "hexpm"},
+  "hut": {:hex, :hut, "1.2.0", "0089df0faa2827c605bbada88153f24fff5ea7a4be32ecf0250a7fdc2719cafb", [], [], "hexpm"},
+  "lager": {:hex, :lager, "3.5.1", "63897a61af646c59bb928fee9756ce8bdd02d5a1a2f3551d4a5e38386c2cc071", [], [{:goldrush, "0.1.9", [hex: :goldrush, repo: "hexpm", optional: false]}], "hexpm"},
+  "meck": {:hex, :meck, "0.8.8", "eeb3efe811d4346e1a7f65b2738abc2ad73cbe1a2c91b5dd909bac2ea0414fa6", [], [], "hexpm"},
+  "parse_trans": {:hex, :parse_trans, "3.0.0", "9e96b1c9c3a0df54e7b76f8f685d38bfa1eb21b31e042b1d1a5a70258e4db1e3", [], [], "hexpm"},
+  "setup": {:hex, :setup, "1.8.4", "738db0685dc1741f45c6a9bf78478e0d5877f3d0876c0b50fd02f0210edb5aa4", [], [], "hexpm"}}
