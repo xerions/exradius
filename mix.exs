@@ -4,7 +4,8 @@ defmodule Exradius.Mixfile do
   def project do
     [ app: :exradius,
       version: "0.0.1",
-      deps: deps(Mix.env) ]
+      deps: deps(Mix.env),
+      xref: [exclude: [:meck]]]
   end
 
   # Configuration for the OTP application
